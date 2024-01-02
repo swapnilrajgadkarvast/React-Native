@@ -28,6 +28,7 @@ import ListingsScreen from "./app/screens/ListingScreens";
 import { useState } from "react";
 import AppTextInput from "./component/AppTextInput";
 import AppPicker from "./component/AppPicker";
+import LoginScreen from "./app/screens/LoginScreen";
 
 export default function App() {
   // const orientation = useDeviceOrientation();
@@ -156,19 +157,20 @@ export default function App() {
     //   </View>
     // </View>
 
-    <Screen>
-      {/* <Text style={{ fontSize: 24, color: "red" }}>{firstName}</Text> //29-12-2023
-      <TextInput
-        placeholder="Firstname"
-        maxLength={255}
-        secureTextEntry
-        style={styles.textinput}
-        onChangeText={(text) => setFirstName(text)}
-      /> */}
-      {/* <AppTextInput icon="email"/> */}
-      {/* <Switch value={isNew} onValueChange={(isNew) => setIsNew(isNew)}></Switch> */}
-      <AppPicker />
-    </Screen>
+    // <Screen>
+    //   {/* <Text style={{ fontSize: 24, color: "red" }}>{firstName}</Text> //29-12-2023
+    //   <TextInput
+    //     placeholder="Firstname"
+    //     maxLength={255}
+    //     secureTextEntry
+    //     style={styles.textinput}
+    //     onChangeText={(text) => setFirstName(text)}
+    //   /> */}
+    //   {/* <AppTextInput icon="email"/> */}
+    //   {/* <Switch value={isNew} onValueChange={(isNew) => setIsNew(isNew)}></Switch> */}
+    //   <AppPicker />
+    // </Screen>
+    <LoginScreen></LoginScreen>
   );
 }
 
