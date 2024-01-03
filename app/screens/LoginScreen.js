@@ -7,6 +7,8 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import ErrorMessage from "../../component/ErrorMessage";
 import AppFormField from "../../component/AppFormField";
+import SubmitButton from "../../component/SubmitButton";
+import AppForm from "../../component/AppForm";
 
 const validationSchemas = Yup.object().shape({
   email: Yup.string().required().email().label("Email"),
@@ -23,20 +25,20 @@ const LoginScreen = () => {
           source={require("../assets/react2_image.jpg")}
           style={styles.logo}
         ></Image>
-        <Formik
+        <AppForm
           initialValues={{ email: "", password: "" }}
           onSubmit={(values) => console.log(values)}
-          validationSchema={validationSchemas}
+          validationSchemas={validationSchemas}
         >
-          {({
+          {/* {({
             handleChange,
             handleSubmit,
             errors,
             setFieldTouched,
             touched,
           }) => (
-            <>
-              {/* <AppTextInput
+            <> */}
+          {/* <AppTextInput
                 icon="email"
                 autoCapitalize="none"
                 autoCorrect={false}
@@ -45,22 +47,22 @@ const LoginScreen = () => {
                 onBlur={() => setFieldTouched("email")}
                 onChangeText={handleChange("email")}
               /> */}
-              {/* <Text style={{ color: "red", paddingBottom: 10 }}>
+          {/* <Text style={{ color: "red", paddingBottom: 10 }}>
                 {errors.email}
               </Text> */}
-              {/* <ErrorMessage
+          {/* <ErrorMessage
                 error={errors.email}
                 touched={touched.email}
               ></ErrorMessage> */}
-              <AppFormField
-                icon="email"
-                autoCapitalize="none"
-                autoCorrect={false}
-                placeholder="Email"
-                keyboardType="email-address"
-                name="email"
-              />
-              {/* <AppTextInput
+          <AppFormField
+            icon="email"
+            autoCapitalize="none"
+            autoCorrect={false}
+            placeholder="Email"
+            keyboardType="email-address"
+            name="email"
+          />
+          {/* <AppTextInput
                 icon="lock"
                 autoCapitalize="none"
                 autoCorrect={false}
@@ -69,26 +71,27 @@ const LoginScreen = () => {
                 onBlur={() => setFieldTouched("password")}
                 onChangeText={handleChange("password")}
               /> */}
-              {/* <Text style={{ color: "red", paddingBottom: 10 }}>
+          {/* <Text style={{ color: "red", paddingBottom: 10 }}>
                 {errors.password}
               </Text> */}
-              {/* <ErrorMessage
+          {/* <ErrorMessage
                 error={errors.password}
                 touched={touched.password}
               ></ErrorMessage> */}
-              <AppFormField
-                icon="lock"
-                autoCapitalize="none"
-                autoCorrect={false}
-                placeholder="Password"
-                secureTextEntry
-                name="password"
-              />
+          <AppFormField
+            icon="lock"
+            autoCapitalize="none"
+            autoCorrect={false}
+            placeholder="Password"
+            secureTextEntry
+            name="password"
+          />
 
-              <AppButton content="Login" onPress={handleSubmit} />
-            </>
-          )}
-        </Formik>
+          {/* <AppButton content="Login" onPress={handleSubmit} /> */}
+          <SubmitButton content="Login" />
+          {/* </>
+          )} */}
+        </AppForm>
       </View>
     </Screen>
   );

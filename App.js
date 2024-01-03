@@ -29,6 +29,8 @@ import { useState } from "react";
 import AppTextInput from "./component/AppTextInput";
 import AppPicker from "./component/AppPicker";
 import LoginScreen from "./app/screens/LoginScreen";
+import RegisterScreen from "./app/screens/RegisterScreen";
+import ListingEditScreen from "./app/screens/ListingEditScreen";
 
 export default function App() {
   // const orientation = useDeviceOrientation();
@@ -36,7 +38,7 @@ export default function App() {
   // const dimensions = useWindowDimensions();
   // console.log(dimensions);
   const [firstName, setFirstName] = useState(""); //29-12-2023
-  const [isNew, setIsNew] = useState(false);
+  const [isNew, setIsNewww] = useState(false);
   return (
     // <View style={styles.container}>
     //   {/* <View
@@ -170,7 +172,9 @@ export default function App() {
     //   {/* <Switch value={isNew} onValueChange={(isNew) => setIsNew(isNew)}></Switch> */}
     //   <AppPicker />
     // </Screen>
-    <LoginScreen></LoginScreen>
+    // <LoginScreen/>
+    // <RegisterScreen />
+    <ListingEditScreen />
   );
 }
 
