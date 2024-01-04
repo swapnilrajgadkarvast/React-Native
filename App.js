@@ -174,7 +174,16 @@ export default function App() {
     // </Screen>
     // <LoginScreen/>
     // <RegisterScreen />
-    <ListingEditScreen />
+    // <ListingEditScreen />
+    <GestureHandlerRootView>
+      <Screen>
+        <ListItem
+          image={require("./app/assets/profile.jpg")}
+          name="Swapnil Rajgadkar"
+          posts="swapnil@gmail.com"
+        ></ListItem>
+      </Screen>
+    </GestureHandlerRootView>
   );
 }
 

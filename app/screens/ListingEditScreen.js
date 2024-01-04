@@ -5,6 +5,7 @@ import AppFormField from "../../component/AppFormField";
 import SubmitButton from "../../component/SubmitButton";
 import AppForm from "../../component/AppForm";
 import AppPicker from "../../component/AppPicker";
+import AppFormPicker from "../../component/AppFormPicker";
 
 const validationSchemas = Yup.object().shape({
   title: Yup.string().required().min(1).label("Title"),
@@ -32,30 +33,26 @@ const ListingEditScreen = () => {
           initialValues={{
             title: "",
             price: "",
-            categories: categories[0].value,
+            categories: null,
             description: "",
           }}
           onSubmit={(values) => console.log(values)}
           validationSchemas={validationSchemas}
         >
+          <AppFormField name="title" placeholder="Title" maxLength={255} width="50%" />
           <AppFormField
-            autoCapitalize="none"
-            autoCorrect={false}
-            placeholder="Title"
-            name="title"
-          />
-          <AppFormField
-            autoCapitalize="none"
-            autoCorrect={false}
-            placeholder="Price"
+            maxLength={8}
             name="price"
+            placeholder="Price"
+            keyboardType="numeric"
+            width={120}
           />
-          <AppPicker items={categories} />
+          <AppFormPicker name="category" items={categories} />
           <AppFormField
-            autoCapitalize="none"
-            autoCorrect={false}
             placeholder="Description"
             name="description"
+            multiline
+            numberOfLines={3}
           />
 
           <SubmitButton content="Post" />
