@@ -8,6 +8,7 @@ import {
   Text,
   TextInput,
   Switch,
+  Button,
 } from "react-native";
 import WelcomeScreen from "./app/screens/WelcomeScreen";
 import ViewImageScreen from "./app/screens/ViewImageScreen";
@@ -25,165 +26,38 @@ import Screen from "./component/Screens";
 import ListItem from "./component/ListItem";
 import AccountScreen from "./app/screens/AccountScreen";
 import ListingsScreen from "./app/screens/ListingScreens";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AppTextInput from "./component/AppTextInput";
 import AppPicker from "./component/AppPicker";
 import LoginScreen from "./app/screens/LoginScreen";
 import RegisterScreen from "./app/screens/RegisterScreen";
 import ListingEditScreen from "./app/screens/ListingEditScreen";
+import * as ImagePicker from "expo-image-picker";
+import ImageInput from "./component/ImageInput";
 
 export default function App() {
-  // const orientation = useDeviceOrientation();
-  // console.log(orientation);
-  // const dimensions = useWindowDimensions();
-  // console.log(dimensions);
-  const [firstName, setFirstName] = useState(""); //29-12-2023
-  const [isNew, setIsNewww] = useState(false);
+  const [imageUri, setImageUri] = useState();
+  const selectImage = async () => {
+    try {
+      const result = await ImagePicker.launchImageLibraryAsync();
+      if (!result.canceled) setImageUri(result.assets[0].uri);
+    } catch (error) {
+      console.log("Error while selecting an image");
+    }
+  };
+  const requestPermission = async () => {
+    const granted = await ImagePicker.getMediaLibraryPermissionsAsync();
+    if (!granted) alert("You have to enable permission to access the library");
+  };
+  useEffect(() => {
+    requestPermission();
+  }, []);
   return (
-    // <View style={styles.container}>
-    //   {/* <View
-    //     style={{
-    //       backgroundColor: "dodgerblue",
-    //       height: 100,
-    //       width: 100,
-    //     }}
-    //   >
-    //     <View
-    //       style={{
-    //         backgroundColor: "yellow",
-    //         height: 50,
-    //         width: 50,
-    //       }}
-    //     ></View>
-    //   </View>
-    //   <View
-    //     style={{
-    //       backgroundColor: "red",
-    //       height: 100,
-    //       width: 100,
-    //       marginTop: 10,
-    //     }}
-    //   ></View> */}
-    //   <View>
-    //     {/* <AppText>Happy New Year !</AppText> */}
-    //     {/* <MaterialCommunityIcons name="email" size={60} color="blue" /> */}
-    //     {/* <AppButton content="login" color="green" onPress={()=>console.log('Logining In')} /> */}
-    //   </View>
-    // </View>
-    // <WelcomeScreen />
-    // <ViewImageScreen />
-    // <TitleScreen />
-    // <View style={{ backgroundColor: "#f8f4f4", paddingTop: 75, padding: 20 }}>
-    //   <Card
-    // image={require("./app/assets/red_jacket.jpg")}
-    // title="Red Jacket for sale"
-    // subTitle="$100"
-    //   />
-    // </View>
-    // <ListingDetailsScreen
-    //   image={require("./app/assets/red_jacket.jpg")}
-    //   title="Red Jacket for sale"
-    //   subTitle="$100"
-    // />
-    // <GestureHandlerRootView>
-    //   <MessageScreen />
-    // </GestureHandlerRootView>
-    // <Screen>
-    //   {/* <Icon
-    //     name="email"
-    //     size={100}
-    //     backgroundColor={colors.danger}
-    //     iconColor={colors.white}
-    //   ></Icon> */}
-    //   <GestureHandlerRootView>
-    //     {/* <AccountScreen /> */}  // 28-12-2023
-    //     <ListingsScreen />  // 29-12-2023
-    //   </GestureHandlerRootView>
-    // </Screen>
-    // <View style={{ flex: 1, backgroundColor: "black" }}>
-    //   <Image
-    //     source={require("./assets/react1_image.jpg")}
-    //     style={{ width: width, height: height, resizeMode: "cover" }}
-    //   />
-    //   <View
-    //     style={{
-    //       position: "absolute",
-    //     }}
-    //   >
-    //     <Image
-    //       source={require("./assets/react2_image.jpg")}
-    //       style={{
-    //         width: 100,
-    //         height: 100,
-    //         top: height / 2 - 320,
-    //         left: width / 2 - 50,
-    //       }}
-    //     />
-    //     <Text
-    //       style={{
-    //         marginTop: 10,
-    //         marginRight: 50,
-    //         color: "black",
-    //         top: height / 2 - 320,
-    //         left: width / 2 - 70,
-    //       }}
-    //     >
-    //       Sell What You Don't Need
-    //     </Text>
-    //   </View>
-    //   <Image
-    //     source={require("./assets/react3_image.jpg")}
-    //     style={{ width: width, height: height, resizeMode: "contain" }}
-    //   />
-    //   <View style={{ position: "absolute", top: 0, left: 0 }}>
-    //     <View
-    //       style={{
-    //         top: 30,
-    //         left: 30,
-    //         width: 70,
-    //         height: 70,
-    //         backgroundColor: "red",
-    //       }}
-    //     />
-    //   </View>
-    //   <View style={{ position: "absolute", top: 0, right: 0 }}>
-    //     <View
-    //       style={{
-    //         top: 30,
-    //         right: 30,
-    //         width: 70,
-    //         height: 70,
-    //         backgroundColor: "green",
-    //       }}
-    //     />
-    //   </View>
-    // </View>
-
-    // <Screen>
-    //   {/* <Text style={{ fontSize: 24, color: "red" }}>{firstName}</Text> //29-12-2023
-    //   <TextInput
-    //     placeholder="Firstname"
-    //     maxLength={255}
-    //     secureTextEntry
-    //     style={styles.textinput}
-    //     onChangeText={(text) => setFirstName(text)}
-    //   /> */}
-    //   {/* <AppTextInput icon="email"/> */}
-    //   {/* <Switch value={isNew} onValueChange={(isNew) => setIsNew(isNew)}></Switch> */}
-    //   <AppPicker />
-    // </Screen>
-    // <LoginScreen/>
-    // <RegisterScreen />
-    // <ListingEditScreen />
-    <GestureHandlerRootView>
-      <Screen>
-        <ListItem
-          image={require("./app/assets/profile.jpg")}
-          name="Swapnil Rajgadkar"
-          posts="swapnil@gmail.com"
-        ></ListItem>
-      </Screen>
-    </GestureHandlerRootView>
+    <Screen>
+      <Button title="select image" onPress={selectImage}></Button>
+      <Image source={{ uri: imageUri }} style={{ width: 200, height: 200 }} />
+      <ImageInput imageUri={imageUri} />
+    </Screen>
   );
 }
 
