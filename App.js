@@ -34,29 +34,23 @@ import RegisterScreen from "./app/screens/RegisterScreen";
 import ListingEditScreen from "./app/screens/ListingEditScreen";
 import * as ImagePicker from "expo-image-picker";
 import ImageInput from "./component/ImageInput";
+import ImageInputList from "./component/ImageInputList";
 
 export default function App() {
-  const [imageUri, setImageUri] = useState();
-  const selectImage = async () => {
-    try {
-      const result = await ImagePicker.launchImageLibraryAsync();
-      if (!result.canceled) setImageUri(result.assets[0].uri);
-    } catch (error) {
-      console.log("Error while selecting an image");
-    }
+  const [imageUris, setImageUris] = useState([]);
+  const handleAdd = (uri) => {
+    setImageUris([...imageUris, uri]);
   };
-  const requestPermission = async () => {
-    const granted = await ImagePicker.getMediaLibraryPermissionsAsync();
-    if (!granted) alert("You have to enable permission to access the library");
+  const handleRemove = (uri) => {
+    setImageUris(imageUris.filter((imageUri) => imageUri != uri));
   };
-  useEffect(() => {
-    requestPermission();
-  }, []);
   return (
     <Screen>
-      <Button title="select image" onPress={selectImage}></Button>
-      <Image source={{ uri: imageUri }} style={{ width: 200, height: 200 }} />
-      <ImageInput imageUri={imageUri} />
+      <ImageInputList
+        imageUris={imageUris}
+        onAddImage={handleAdd}
+        onRemoveImage={handleRemove}
+      />
     </Screen>
   );
 }
