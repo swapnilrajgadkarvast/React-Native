@@ -6,12 +6,15 @@ import SubmitButton from "../../component/SubmitButton";
 import AppForm from "../../component/AppForm";
 import AppPicker from "../../component/AppPicker";
 import AppFormPicker from "../../component/AppFormPicker";
+import AppFormImagePicker from "../../component/AppFormImagePicker";
+import { useState } from "react";
 
 const validationSchemas = Yup.object().shape({
   title: Yup.string().required().min(1).label("Title"),
   price: Yup.number().required().min(1).max(10000).label("Price"),
   category: Yup.object().required().nullable().label("Category"),
   description: Yup.string().label("Description"),
+  images: Yup.array().min(1, "Please select atleast one image"),
 });
 
 const categories = [
@@ -22,6 +25,8 @@ const categories = [
 ];
 
 const ListingEditScreen = () => {
+  const [location, setLocation] = useState();
+  const getLocation = async () => {};
   return (
     <Screen>
       <View style={styles.container}>
@@ -35,17 +40,18 @@ const ListingEditScreen = () => {
             price: "",
             categories: null,
             description: "",
+            images: [],
           }}
           onSubmit={(values) => console.log(values)}
           validationSchemas={validationSchemas}
         >
-          <AppFormField name="title" placeholder="Title" maxLength={255} width="50%" />
+          <AppFormImagePicker name="images" />
+          <AppFormField name="title" placeholder="Title" maxLength={255} />
           <AppFormField
             maxLength={8}
             name="price"
             placeholder="Price"
             keyboardType="numeric"
-            width={120}
           />
           <AppFormPicker name="category" items={categories} />
           <AppFormField

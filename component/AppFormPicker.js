@@ -4,11 +4,11 @@ import colors from "../app/config/colors";
 import { Picker } from "@react-native-picker/picker";
 
 import { useFormikContext } from "formik";
-const AppFormPicker = ({ name, items,width }) => {
+const AppFormPicker = ({ name, items, width }) => {
   const { setFieldValue, errors, touched, values } = useFormikContext();
   return (
     <>
-      <View style={[styles.container, { width }]}>
+      <View style={[styles.container, width]}>
         <Picker
           selectedValue={values[name]}
           style={styles.picker}
@@ -31,6 +31,10 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     //padding: 15,
     marginVertical: 20,
+  },
+  picker: {
+    height: 50,
+    width: "100%",
   },
 });
 export default AppFormPicker;
