@@ -1,7 +1,7 @@
-import { FlatList } from "react-native-gesture-handler";
+// import { FlatList } from "react-native-gesture-handler";
 import Card from "../../component/Card";
 import Screen from "../../component/Screens";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View,FlatList } from "react-native";
 import colors from "../config/colors";
 
 const listings = [
@@ -18,7 +18,7 @@ const listings = [
     image: require("../assets/red_jacket.jpg"),
   },
 ];
-const ListingsScreen = () => {
+const ListingsScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Screen>
@@ -30,6 +30,7 @@ const ListingsScreen = () => {
               title={item.title}
               subTitle={item.subTitle}
               image={item.image}
+              onPress={() => navigation.navigate("ListingDetails", item)}
             ></Card>
           )}
         ></FlatList>

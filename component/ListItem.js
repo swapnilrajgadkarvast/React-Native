@@ -17,22 +17,28 @@ const ListItem = ({
   IconComponent,
 }) => {
   return (
-    <Swipeable renderRightActions={renderRightActions}>
-      <TouchableHighlight underlayColor="#f0f0f0" onPress={onPress}>
-        <View style={styles.listItemContainer}>
-          {IconComponent}
-          {image && <Image style={styles.profile_image} source={image} />}
-          <View style={styles.textContainer}>
-            <Text style={styles.name} numberOfLines={1}>{name}</Text>
-            {posts && <Text style={styles.post} numberOfLines={2}>{posts}</Text>}
-          </View>
-          <MaterialCommunityIcons
-            name="chevron-right"
-            size={25}
-          ></MaterialCommunityIcons>
+    // <Swipeable renderRightActions={renderRightActions}>
+    <TouchableHighlight underlayColor="#f0f0f0" onPress={onPress}>
+      <View style={styles.listItemContainer}>
+        {IconComponent}
+        {image && <Image style={styles.profile_image} source={image} />}
+        <View style={styles.textContainer}>
+          <Text style={styles.name} numberOfLines={1}>
+            {name}
+          </Text>
+          {posts && (
+            <Text style={styles.post} numberOfLines={2}>
+              {posts}
+            </Text>
+          )}
         </View>
-      </TouchableHighlight>
-    </Swipeable>
+        <MaterialCommunityIcons
+          name="chevron-right"
+          size={25}
+        ></MaterialCommunityIcons>
+      </View>
+    </TouchableHighlight>
+    // </Swipeable>
   );
 };
 

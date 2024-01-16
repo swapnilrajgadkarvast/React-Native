@@ -35,6 +35,10 @@ import ListingEditScreen from "./app/screens/ListingEditScreen";
 import * as ImagePicker from "expo-image-picker";
 import ImageInput from "./component/ImageInput";
 import ImageInputList from "./component/ImageInputList";
+import AuthNavigator from "./app/navigation/AuthNavigator";
+import { NavigationContainer } from "@react-navigation/native";
+import navigationTheme from "./app/navigation/navigationTheme";
+import AppNavigator from "./app/navigation/appNavigator";
 
 export default function App() {
   const [imageUris, setImageUris] = useState([]);
@@ -45,14 +49,21 @@ export default function App() {
     setImageUris(imageUris.filter((imageUri) => imageUri != uri));
   };
   return (
-    <Screen>
-      {/* <ImageInputList
-        imageUris={imageUris}
-        onAddImage={handleAdd}
-        onRemoveImage={handleRemove}
-      /> */}
-      <ListingEditScreen />
-    </Screen>
+    // <Screen>
+    //   {/* <ImageInputList
+    //     imageUris={imageUris}
+    //     onAddImage={handleAdd}
+    //     onRemoveImage={handleRemove}
+    //   /> */}
+    //   {/* <ListingEditScreen /> */}
+    //   <NavigationContainer>
+
+    //   </NavigationContainer>
+    // </Screen>
+    <NavigationContainer theme={navigationTheme}>
+      {/* <AuthNavigator /> */}
+      <AppNavigator />
+    </NavigationContainer>
   );
 }
 
